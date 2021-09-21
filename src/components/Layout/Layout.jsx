@@ -2,7 +2,8 @@ import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 
 import './style.scss';
-import Pet from '../Pets/Pet';
+import Routes from '../../Routes/Routes';
+import { Link } from 'react-router-dom';
 
 const { Header, Content, Footer } = Layout;
 
@@ -12,9 +13,12 @@ const MainLayout = () => {
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1">Pets</Menu.Item>
-          {/* <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item> */}
+          <Menu.Item key="1">
+            <Link to="/">Pets</Link>
+          </Menu.Item>
+          <Menu.Item key="2">
+            <Link to="/pet">Create Pet</Link>
+          </Menu.Item>
         </Menu>
       </Header>
       <Content
@@ -28,7 +32,7 @@ const MainLayout = () => {
           className="site-layout-background"
           style={{ padding: 24, minHeight: 380 }}
         >
-          <Pet />
+          <Routes />
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Test App</Footer>

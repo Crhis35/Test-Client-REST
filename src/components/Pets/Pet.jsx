@@ -15,6 +15,11 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
+/**
+ * @description export Pet component
+ * @returns {JSX.Element}
+ */
+
 const Pet = () => {
   const [spinning, setSpinning] = useState(false);
   const [pet, setPet] = useState([]);
@@ -25,7 +30,6 @@ const Pet = () => {
       setSpinning(true);
       const url = `/api/pet/findByStatus?status=${values.status}`;
       const { data } = await axios.get(url);
-      console.log(data);
       setPet([]);
       setPet(data);
       toast.success('Pet list updated');
@@ -59,8 +63,8 @@ const Pet = () => {
         </Form>
       </Spin>
       <Card title="Pet List">
-        {pet.map((p) => (
-          <PetCard loading={spinning} key={p.id} pet={p} />
+        {pet.map((p, idx) => (
+          <PetCard loading={spinning} key={`${p.id}-${idx}`} pet={p} />
         ))}
       </Card>
     </>
